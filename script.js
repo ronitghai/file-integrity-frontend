@@ -1,33 +1,28 @@
 const backendBaseUrl = "https://file-integrity-backend.azurewebsites.net/api";
 
 
-async function handleForm(endpoint, fileInputId, resultId) {
-  const fileInput = document.getElementById(fileInputId);
-  const resultPre = document.getElementById(resultId);
-  const formData = new FormData();
-  formData.append("file", fileInput.files[0]);
-
-  resultPre.textContent = "⏳ Processing...";
-
-  try {
-    const response = await fetch(endpoint, {
-      method: "POST",
-      body: formData,
-    });
-
-    const result = await response.json();
-    resultPre.textContent = JSON.stringify(result, null, 2);
-  } catch (err) {
-    resultPre.textContent = `❌ Error: ${err.message}`;
-  }
-}
-
-document.getElementById("upload-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  handleForm("/upload", "upload-file", "upload-result");
+// Upload File
+fetch(`${backendBaseUrl}/uploadFile`, {
+  method: "POST",
+  body: formData,
+})
+.then(response => response.json())
+.then(data => {
+  console.log("Upload Success:", data);
+})
+.catch(error => {
+  console.error("Upload Error:", error);
 });
 
-document.getElementById("verify-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  handleForm("/verify", "verify-file", "verify-result");
+// Verify File
+fetch(`${backendBaseUrl}/verifyFile`, {
+  method: "POST",
+  body: formData,
+})
+.then(response => response.json())
+.then(data => {
+  console.log("Verify Success:", data);
+})
+.catch(error => {
+  console.error("Verify Error:", error);
 });
