@@ -1,3 +1,6 @@
+const backendBaseUrl = "https://file-integrity-backend.azurewebsites.net/api";
+
+
 async function handleForm(endpoint, fileInputId, resultId) {
   const fileInput = document.getElementById(fileInputId);
   const resultPre = document.getElementById(resultId);
