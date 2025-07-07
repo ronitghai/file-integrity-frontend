@@ -10,23 +10,20 @@
   <div class="container">
     <h1>🛡️ File Integrity Verifier</h1>
     
-    <div class="card">
-      <h2>📤 Upload File</h2>
-      <form id="upload-form">
-        <input type="file" id="upload-file" required />
-        <button type="submit">Upload</button>
-      </form>
-      <pre id="upload-result" class="result"></pre>
-    </div>
+    <!-- Upload Form -->
+    <form id="uploadForm">
+      <input type="file" id="uploadFile" />
+      <button type="submit">Upload</button>
+    </form>
+    <div id="uploadStatus"></div>
 
-    <div class="card">
-      <h2>🔍 Verify File</h2>
-      <form id="verify-form">
-        <input type="file" id="verify-file" required />
-        <button type="submit">Verify</button>
-      </form>
-      <pre id="verify-result" class="result"></pre>
-    </div>
+    <!-- Verify Form -->
+    <form id="verifyForm">
+      <input type="file" id="verifyFile" />
+      <button type="submit">Verify</button>
+    </form>
+    <div id="verifyStatus"></div>
+
   </div>
 
   <script src="/script.js" defer></script>
