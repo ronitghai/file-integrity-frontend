@@ -3,27 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>File Integrity Verifier</title>
+  <title>🛡️ File Integrity Verifier</title>
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/png" href="https://img.icons8.com/ios-filled/50/shield.png" />
 </head>
 <body>
   <div class="container">
     <h1>🛡️ File Integrity Verifier</h1>
-    
-    <!-- Upload Form -->
-    <form id="uploadForm">
-      <input type="file" id="uploadFile" />
-      <button type="submit">Upload</button>
-    </form>
-    <div id="uploadStatus"></div>
 
-    <!-- Verify Form -->
-    <form id="verifyForm">
-      <input type="file" id="verifyFile" />
-      <button type="submit">Verify</button>
-    </form>
-    <div id="verifyStatus"></div>
+    <div class="card">
+      <h2>📤 Upload File</h2>
+      <form id="uploadForm">
+        <input type="file" id="uploadFile" required />
+        <button type="submit">Upload</button>
+      </form>
+      <pre id="upload-result" class="result"></pre>
+    </div>
 
+    <div class="card">
+      <h2>🔍 Verify File</h2>
+      <form id="verifyForm">
+        <input type="file" id="verifyFile" required />
+        <button type="submit">Verify</button>
+      </form>
+      <pre id="verify-result" class="result"></pre>
+    </div>
   </div>
 
   <script src="/script.js" defer></script>

@@ -1,70 +1,76 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: #fff;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+  color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
 }
 
 .container {
+  width: 100%;
   max-width: 800px;
-  margin: 40px auto;
-  padding: 2rem;
-  backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 30px;
   font-size: 2.5rem;
+  color: #00ffc3;
+  text-shadow: 0 0 10px #00ffc3;
 }
 
 .card {
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  background: #1c1f2b;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 255, 195, 0.15);
+  margin-bottom: 30px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.card h2 {
+  color: #00e6b8;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
 }
 
 input[type="file"] {
-  padding: 8px;
-  background: #fff;
-  color: #000;
-  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 15px;
+  background: #2a2d3e;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #555;
 }
 
 button {
-  padding: 10px;
-  border: none;
-  background: #00c6ff;
-  color: #fff;
+  background: #00ffc3;
+  color: #000;
   font-weight: bold;
-  border-radius: 6px;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 button:hover {
-  background: #0072ff;
-  transform: scale(1.05);
+  background: #00e6b8;
+  box-shadow: 0 0 10px #00ffc3, 0 0 20px #00ffc3;
+  transform: translateY(-2px);
 }
 
 .result {
-  background: #111;
-  padding: 1rem;
-  border-radius: 6px;
-  font-family: monospace;
+  background: #10131f;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
   white-space: pre-wrap;
-  word-wrap: break-word;
-  margin-top: 1rem;
+  color: #e3e3e3;
+  border-left: 4px solid #00ffc3;
 }

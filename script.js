@@ -1,71 +1,52 @@
 const backendBaseUrl = "https://file-integrity-backend.azurewebsites.net/api";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Upload
-  document.getElementById("uploadForm").addEventListener("submit", async (event) => {
-    event.preventDefault();
+  const uploadForm = document.getElementById("uploadForm");
+  const verifyForm = document.getElementById("verifyForm");
 
+  uploadForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
     const fileInput = document.getElementById("uploadFile");
-    const status = document.getElementById("uploadStatus");
-
-    if (!fileInput.files.length) {
-      status.textContent = "❌ Please select a file to upload.";
-      return;
-    }
+    const resultBox = document.getElementById("upload-result");
+    resultBox.textContent = "Uploading...";
 
     const formData = new FormData();
     formData.append("file", fileInput.files[0]);
 
     try {
-      const response = await fetch(`${backendBaseUrl}/uploadFile`, {
+      const res = await fetch(`${backendBaseUrl}/uploadFile`, {
         method: "POST",
         body: formData,
       });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        status.innerHTML = `✅ <strong>File uploaded successfully!</strong><br>SHA256 Hash: <code>${result.hash}</code>`;
-      } else {
-        status.textContent = `❌ Upload failed: ${result.message || response.statusText}`;
-      }
-    } catch (error) {
-      status.textContent = `❌ Upload error: ${error.message}`;
+      const data = await res.json();
+      resultBox.textContent = JSON.stringify(data, null, 2);
+    } catch (err) {
+      resultBox.textContent = `❌ Upload failed: ${err.message}`;
     }
   });
 
-  // Verify
-  document.getElementById("verifyForm").addEventListener("submit", async (event) => {
-    event.preventDefault();
-
+  verifyForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
     const fileInput = document.getElementById("verifyFile");
-    const status = document.getElementById("verifyStatus");
-
-    if (!fileInput.files.length) {
-      status.textContent = "❌ Please select a file to verify.";
-      return;
-    }
+    const resultBox = document.getElementById("verify-result");
+    resultBox.textContent = "Verifying...";
 
     const formData = new FormData();
     formData.append("file", fileInput.files[0]);
 
     try {
-      const response = await fetch(`${backendBaseUrl}/verifyFile`, {
+      const res = await fetch(`${backendBaseUrl}/verifyFile`, {
         method: "POST",
         body: formData,
       });
-
-      const result = await response.json();
-
-      if (response.ok && result.valid) {
-        status.innerHTML = `✅ <strong>File is valid!</strong><br>Expected & Got Hash: <code>${result.expected}</code>`;
-      } else if (response.ok && !result.valid) {
-        status.innerHTML = `❌ <strong>File does NOT match!</strong><br>Expected: <code>${result.expected}</code><br>Got: <code>${result.got}</code>`;
+      const data = await res.json();
+      if (data.valid) {
+        resultBox.textContent = `✅ File is valid!\nExpected: ${data.expected}\nGot: ${data.got}`;
       } else {
-        status.textContent = `❌ Verification failed: ${result.message || response.statusText}`;
+        resultBox.textContent = `❌ Invalid file!\nExpected: ${data.expected}\nGot: ${data.got}`;
       }
-    } catch (error) {
-      status.textContent = `❌ Verification error: ${error.message}`;
+    } catch (err) {
+      resultBox.textContent = `❌ Verification failed: ${err.message}`;
     }
   });
 });
